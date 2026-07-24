@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partnering Companion</title>
+<style>
+  :root { --radius: 18px; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; min-height: 100%;
+    background: #0b0f1a;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 24px; gap: 20px;
+  }
+  h1 { color: #e8ecf5; font-size: clamp(18px, 4vw, 26px); font-weight: 600; margin: 0; text-align: center; }
+  .hint { color: #7f8aa3; font-size: 14px; text-align: center; margin: 0; }
+ 
+  .scene {
+    width: min(92vw, 820px);
+    aspect-ratio: 1587 / 1000;
+    perspective: 1600px;
+    cursor: pointer;
+  }
+  .card {
+    position: relative; width: 100%; height: 100%;
+    transition: transform 0.7s cubic-bezier(.22,.61,.36,1);
+    transform-style: preserve-3d;
+  }
+  .card.flipped { transform: rotateY(180deg); }
+  .face {
+    position: absolute; inset: 0;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,.55);
+  }
+  .face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .back { transform: rotateY(180deg); }
+ 
+  .flip-btn {
+    background: #16203a; color: #cdd6ec;
+    border: 1px solid #2a3654;
+    padding: 9px 18px; border-radius: 999px;
+    font-size: 14px; cursor: pointer;
+    transition: background .2s;
+  }
+  .flip-btn:hover { background: #1f2c4d; }
+</style>
+</head>
+<body>
+  <h1>Partnering Companion</h1>
+ 
+  <div class="scene" id="scene" onclick="flip()" title="Clique para virar">
+    <div class="card" id="card">
+      <div class="face front"><img src="frente_cartao.PNG" alt="Frente do cartao"></div>
+      <div class="face back"><img src="verso_cartao.PNG" alt="Verso do cartao"></div>
+    </div>
+  </div>
+ 
+<script>
+  function flip() {
+    document.getElementById('card').classList.toggle('flipped');
+  }
+</script>
+</body>
+</html>
